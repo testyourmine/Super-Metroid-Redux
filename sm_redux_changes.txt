@@ -1,0 +1,323 @@
+$80:858F: JSL $80FF70
+$80:8F27: JSL $80CD90
+$80:9632: XBA, SEP #20, CLV
+$80:9661: STZ $05BD, BVS $07
+$80:978E: LDA $05BC
+$80:980A: LDA $05BC
+$80:9C55: LDA $0A04
+$80:9C6C: LDA $0A04
+$80:9C96: BRA $12
+$80:9DBF: some data, moves around the tilemaps
+$80:A0ED: JSR $A2ED
+$80:A214: LDA #$180F
+$80:A29C: alot, redoes Clear FX Tilemap
+$80:AE9C: ADC #$0008
+$80:AEA6: ADC #$0008
+$80:AEB5: CPX #$0020
+$80:AEE0: SBC #$0008
+$80:AEEA: SBC #$0008
+$80:AEF9: CPX #$0020
+$80:AF63: ADC #$0008
+$80:AF6D: ADC #$0008
+$80:AF7C: CPX #$001D
+$80:AFE5: SBC #$0008
+$80:AFEF: SBC #$0008
+$80:AFF5: CPX #$0003
+$80:B029: CPX #$001D
+$80:CD90: alot of code
+$80:CEA0: alot of code, called by Pre-instruction - enemy projectile $F337 (pickup)
+$80:FA90: PHK, PLB, JSR.W CODE_809CEA, RTL
+$80:FF70: some code, called by $CD90
+$80:FFDC: DB $5353
+$80:FFDE: DB $ACAC
+
+$81:8000: JMP CODE_81EF2D
+$81:8085: JMP CODE_81EFDF
+$81:8131: db $0C,$49,$47,$4B,$11,$41,$14,$07 Size of each area map
+$81:82E4: alot, redoes Load map
+$81:834B: alot, redoes Save map
+$81:8E31: db $01,$01,$18,$00,$E0,$B8,$00,$20 pause sprite tiles
+$81:9A47: LDA UNREACH_81EF20,X
+$81:9A52: LDA UNREACH_81EF20,X
+$81:9A61: CPY #$0A00
+$81:9CAE: LDA UNREACH_81EF20,X
+$81:9CBE: CPY #$0A00
+$81:A149: JSR CODE_81FA00
+$81:B14B: Tilemap - room select map controls
+$81:B327: STA $09B6
+$81:B32D: STA $09B4
+$81:B333: STA $09B8
+$81:B339: STA $09B2
+$81:B346: STA $09BC
+$81:B34B: STA $09BE
+$81:B35D: STZ $09EA
+$81:B360: LDA #$0001, STA $09E4
+$81:EF20: db $10,$00,$10,$0A,$10,$14 SRAM offsets
+$81:EF2D: alot of code, redoes Save to SRAM
+$81:EFDF: alot of code, redoes Load from SRAM
+$81:F800: alot of data, idk what it has	//nothing to do, but what it does idk
+$81:FA00: alot of code, draws difficulty on file select
+
+$82:8774: alot of data, stuff for Demo room data
+$82:8E75: alot of code, redoes Load pause menu tiles and clear BG2 tilemap
+$82:8F68: JSR CODE_82FB32, JSR CODE_82FA6A for Samus wireframe
+$82:91BE: JSR CODE_82F719
+$82:9297: DEC $B1
+$82:92C6: INC $B1
+$82:92D3: DEC $B3
+$82:92E0: INC $B3
+$82:965F: alot of data, stuff for Area label tilemaps
+$82:98D7: db $40, random change in Map data
+$82:98EF: db $00, random change in Map data
+$82:AC52: JSR CODE_82DC60
+$82:AF4F: alot of code, redoes Equipment screen - main - tanks - reserve tank
+$82:B4C4: CPX $000C
+$82:B5C5: JSR CODE_82F70F
+$82:B5E3: JSR CODE_82F714
+$82:B8AA: JSR CODE_82FBC7
+$82:BF06: alot of data, repoints Equipment screen tilemaps
+$82:C076: alot of data, changes Suit and Boots RAM tilemap offsets for Equipment screen data
+$82:C1B2: alot of data, changes Suit and Boots Pointers for Pause screen sprite animation data
+$82:C3AF: dx 0001, 0001,00,20B7 changes debug save icon Spritemap
+$82:C3B6: dx 0001, 0001,00,20AA changes Spritemap thing
+$82:D24B: changes to Spritemap 4Bh
+$82:D521: alot of data, redoes Samus wireframe tilemaps
+$82:D961: LDA #$0006
+$82:DB69: alot of code, changes routine in Handle Samus running out of health and increment game time
+$82:DC31: alot of code, changes Reserve tank auto refill
+$82:DE50: some code, changes Load door header
+$82:E126: JSL CODE_84EFD3, BRA CODE_82E134
+$82:E3F1: CMP #$0003
+$82:E569: LDA #$180F
+$82:F22C: some code, redoes reset to default controls
+$82:F5CA: RTS, skips L and R aim check
+$82:F70F: alot of code, extension of Equipment screen - main - button response
+$82:FA6A: alot of code, probably bunch of routines
+
+$84:8331: BMI $0F
+$84:861A: JSR $F100
+$84:889F: JSL $84F050
+$84:8986: alot of code, redoes Instruction - collect [[Y]] health reserve tank
+$84:89CB: JSR $FD00
+$84:8BF2: JSR $EFF0
+$84:8CD2: JSR $FFD0, remove CMP and BEQ
+$84:AEC5: remove BEQ
+$84:B2EE: remove BEQ
+$84:B321: remove BEQ
+$84:B48B: dw $0000, $0001, $0120, $0100, $0600, $0600, change Quicksand surface inside reaction constants
+$84:B4B6: LDA #$0000, STA $05BA, LDA #$0000
+$84:BA4C: change to Instruction list - PLM $BAF4
+$84:BA7F: change to Instruction list - PLM $BAF4
+$84:BE59: alot of data, changes to Instruction lists
+$84:CE83: alot of code, changes to Setup - PLM
+$84:CF70: JSR $FFB0
+$84:CFA9: JSR $FFB7
+$84:E094: JSR $F100
+$84:E099: alot of data, changes to Instruction lists
+$84:EFD3: alot of code, some routines
+$84:F100: some code, contiunation of hijack from E094
+$84:FD00: alot of code, routine	//done, probably
+$84:FB00: alot of code, continuation of hijack from CF70
+
+$85:8000: alot of data, makes Small and Large message box tilemaps blank
+$85:8089: BRA $02, skips Cancel sound effects
+$85:8426: alot of data, redoes Tile numbers for button letters
+$85:8490: LDX #$0020
+$85:877F: alot of data, redoes all of Message tilemaps
+$85:9650: alot of code, some routine
+
+$86:B704: BEQ $0D
+$86:EFE2: JSL $80CEA0, skips DEC and LDA
+$86:F0BE: JSR $F5A0
+$86:F0CD: JSR $F5A0
+$86:F0EB: JSR $F5A8
+$86:F5A0: alot of code, hijack from F0BE and F0CD
+$86:F600: alot of code, some routine
+
+$87:8293: some data, changes to Animated tiles objects and instruction lists - FX layer 3
+
+$88:8735: JSL $90FB3F, skips LDA and BIT
+$88:8757: JSL $90FB3F, skips LDA and BIT
+$88:8788: LDA $0084
+$88:8799: LDA #$001A
+$88:87AE: JSL $90FB3F, skips LDA and BIT
+$88:87F7: SBC #$0002
+$88:8819: ADC #$0002
+$88:884F: ADC #$0002
+$88:887A: SBC #$0002
+$88:8A97: PLP, RTS, skips rest of routine
+
+$89:AC31: JSR $AF00
+$89:AF00: alot of code, hijack from AC31
+
+$8A:8000: alot of data, pretty much everything
+
+$8B:A367: JSR $FA00
+$8B:AF44: STA $0A04
+$8B:B769: JSR $BC66
+$8B:BC08: alot of code, redoes Reset button assignments to default
+$8B:BC75: alot of code, redoes Recover previous button assignments
+$8B:F064: LDA #$0094
+$8B:F073: LDA #$009C
+$8B:F07C: LDA #$00A4
+$8B:F08B: LDA #$00AC
+$8B:F09A: LDA #$00B4
+$8B:F416: JSR $F7CA
+$8B:F41B: some code, changes i dont feel like listing
+$8B:F71B: JSL $8BF900, skips SEP and STA
+$8B:F770: alot of code, some routines
+$8B:F900: alot of code, continuation of F71B
+$8B:FA00: alot of code, hijack from A367
+
+$8C:B49B: alot of data, changes whole 'CLEAR TIME' Ending Sequence spritemap
+
+$8E:8000: alot of data, changes most of the bank
+
+$8F:8000: some data, various changes throughout bank
+$8F:E9A0: some stuff
+
+$90:8022: JSR $F6A0
+$90:831E: JSR $F6DA
+$90:8526: JSR $F6DA
+$90:8542: JSR $FB9F
+$90:854D: AND #$000F
+$90:8592: ADC #$0200
+$90:859D: some code, fixes sound bug
+$90:9005: AND #$0000
+$90:9774: AND #$000F
+$90:9781: JSR $FB9F
+$90:9927: some code, fixed speed booster
+$90:9E8B: alot of data, changes Samus physics constants
+$90:A383: JMP $FA00
+$90:A445: remove LDA
+$90:A734: some code, changes Samus movement - wall jumping
+$90:AC60: BEQ $00
+$90:AD70: remove STZ and STZ
+$90:AE19: BRA $02
+$90:AFF1: BRA $29
+$90:B005: some code, changes super missile acceleration i think
+$90:B2F6: some code, changes Accelerate (super) missile
+$90:B366: alot of code, changes Super missile link vertical block collision detection
+$90:B406: alot of code, changes Super missile link horizontal block collision detection
+$90:B85F: CMP #$002C
+$90:B98B: JSR $FBB0
+$90:BEDE: JSR $FAA0
+$90:BF20: PLP, RTS, skips all the autocancel code
+$90:BFA0: some code, changes power bomb handling i think
+$90:BFFE: JSR $F750
+$90:C04C: LDA #$0003
+$90:C08C: PLP, RTS, skips all the autocancel code
+$90:C254: some data, changes projectile cooldowns
+$90:C4B5: alot of code, redoes all of HUD selection
+$90:CCC0: LDA $8B, BIT $09BA, BNE $02
+$90:CF33: LDA #$0060
+$90:CF70: LDA #$0001
+$90:D036: LDA #$003A
+$90:D0CE: LDA $09C2
+$90:D0FD: LDA $09C2
+$90:D129: LDA $09C2
+$90:D34C: JSR $FA7A
+$90:D396: BRA $27, skips most of the routine
+$90:D8CF: some data, changes Bomb spread data
+$90:DDCA: BIT $09B8
+$90:E2E9: LDA #$0050
+$90:E2F1: LDA #$004F
+$90:F640: some code, idk what it does
+$90:F670: some code, called by $91:FC99
+$90:F6A0: alot of code, hijack from 8022
+$90:F750: some code, idk what it does
+$90:F780: some code, idk what it does
+$90:FA00: alot of code, hijack from A383
+$90:FAA0: alot of code, hijack from BEDE
+$90:FAD1: alot of code, multiple routines it seems
+$90:FB90: alot of code, multiple routines it seems
+
+$91:81A9: alot of code, redoes transition table look up
+$91:81F4: alot of code, redoes Translate custom controller bindings to default bindings
+$91:83DF: JSR $FFEE
+$91:8885: alot of data, changes Demo data
+$91:8A33: completely delete Demo Samus setup - landing site
+$91:8ACE: alot of data, changes Demo input instruction lists
+$91:9EE2: alot of data, replaces Transition Table with Fall Transitions
+$91:B010: alot of data, changes Animation delay table
+$91:B629: some data, minor change in Pose definitions
+$91:CAE3: BIT $09B8
+$91:D755: CMP #$002C
+$91:D9FD: BRA $EB
+$91:DA8C: some code
+$91:E14A: JSL $84FD15, skips STZ and STZ
+$91:E8FE: some code, redoes Set Samus fall pose
+$91:EFFA: remove STZ and STZ
+$91:F66F: remove JSL
+$91:FC99: JSL $90F670
+$91:FFEE: some code, hijack from 83DF
+
+$92:808D: some data, changes Samus spritemap table
+$92:DB48: some data, changes Samus tiles animation - animation definitions
+$92:EDF4: alot of data, some addition to Samus spritemap table
+
+$94:8884: JSR $B1F0
+$94:8E92: remove BCC
+$94:8EB5: JSR $B1B0
+$94:8EF0: JSR $B1B0
+$94:8F2B: JSR $B1B0
+$94:988C: JSR $B1B0
+$94:B1B0: some code, hijack from places
+$94:B1F0: alot of code, hijack from 8884
+
+$95:8000: alot of data, so many changes idek
+
+$9A:8000: alot of data
+
+$9B:C8B9: RTS, skips autocancel check
+$9B:C9AE: RTS, skips autocancel check
+$9B:CA59: RTS, skips autocancel check
+$9B:CB97: LDA #$0019
+$9B:CB9F: LDA #$001A
+$9B:CBEF: RTS, skips autocancel check
+
+$A0:868F: JSR $FF00
+$A0:9834: JSR $F800
+$A0:9929: LDA #$0008
+$A0:9A90: remove STZ
+$A0:A096: remove STZ
+$A0:A45E: some code, redoes Suit damage division
+$A0:A57B: LDA #$0008
+$A0:A6E4: JSR $FEA0
+$A0:AA24: JMP $FFD0
+$A0:F800: some code, hijack from 9834
+$A0:FEA0: some code, hijack from A6E4
+$A0:FF00: alot of code, hijack from 868F
+$A0:FFD0: some code, hijack from AA24
+
+$A2:A80F: CMP #$02EA
+$A2:A9B5: JSR $FF90
+$A2:FF90: some code, hijack from A9B5
+
+$A3:9581: some code
+$A3:95AF: SBC #$0002
+$A3:95D1: ADC #$0002
+$A3:95EB: SBC #$0002
+
+$A6:AAD7: BRA $10
+
+$A7:C325: alot of code, redoes Pause hook - Kraid
+
+$A8:9C13: LDA $0AFA
+$A8:9D45: LDA $0AFA
+$A8:9DC3: LDA $0AFA
+$A8:9DCD: LDA $0AFA
+
+$A9:F29A: JSR $FC00
+$A9:FC00: some code, hijack from F29A
+
+$B4:BDA3: BPL $F8
+$B4:F1F4: alot of data, changes Enemy drop chances
+
+$B5:8000: alot of data, changes Map tilemaps
+
+$B6:8000: alot of data, changes Pause screen graphics
+
+$C2:C2BB: alot of data, changes Level data
+
+okay i think everything left is data now, no more code
