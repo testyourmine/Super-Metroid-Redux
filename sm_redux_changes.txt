@@ -79,11 +79,11 @@ $82:B8AA: JSR CODE_82FBC7 - Map Item Circles, no change
 $82:BF06: alot of data, repoints Equipment screen tilemaps - no clue
 $82:C076: alot of data, changes Suit and Boots RAM tilemap offsets for Equipment screen data - Equipment Screen Timer, no changes
 $82:C1B2: alot of data, changes Suit and Boots Pointers for Pause screen sprite animation data - Equipment Screen Timer, no changes
-$82:C3AF: dx 0001, 0001,00,20B7 changes debug save icon Spritemap - New Item Circles, no changes
-$82:C3B6: dx 0001, 0001,00,20AA changes Spritemap thing - New Item Circles, no changes
+$82:C3AF: dx 0001, 0001,00,20B7 changes debug save icon Spritemap - Map Item Circles, no changes
+$82:C3B6: dx 0001, 0001,00,20AA changes Spritemap thing - Map Item Circles, no changes
 $82:D24B: changes to Spritemap 4Bh - Difficulty Level Selection, no changes probably
 $82:D521: alot of data, redoes Samus wireframe tilemaps - no clue
-$82:D961: LDA #$0006 - Door Transition Speed, no change - Door Transition Speed, no change
+$82:D961: LDA #$0006 - Door Transition Speed, no change
 $82:DB69: alot of code, changes routine - Vanilla Bugfixes, no changes
 $82:DC31: alot of code, changes Reserve tank auto refill - Reserve Tank Bugfixes,no changes
 $82:DE50: some code, changes Load door header - Door Transition Speed, no changes
@@ -242,7 +242,7 @@ $90:FB04: some code, routine - Control Freak PB UI, no changes
 $90:FB90: alot of code, multiple routines it seems
 $90:FB9F: some code, routine - Control Freak PB, no changes
 $90:FBB0: some code, routine - Control Freak PB, no changes
-$90:FC99: some code, routine - Spinjump Restart, no changes
+$90:FC99: some code, routine - Control Freak Project Base Spinjump Restart, no changes
 
 $91:81A9: alot of code, redoes transition table look up - Control Freak PB, no changes
 $91:81F4: alot of code, redoes Translate custom controller bindings to default bindings - Control Freak PB, no changes
@@ -261,7 +261,7 @@ $91:E14A: JSL $84FD15, skips STZ and STZ - Control Freak PB UI, no changes
 $91:E8FE: some code, redoes Set Samus fall pose - Control Freak PB UI, no changes
 $91:EFFA: remove STZ and STZ - no clue
 $91:F66F: remove JSL - no clue
-$91:FC99: JSL $90F670 - Spinjump Restart, address changed
+$91:FC99: JSL $90F670, RTS - Control Freak Project Base Spinjump Restart, address changed
 $91:FFEE: some code, hijack from 83DF - no clue
 
 $92:808D: some data, changes Samus spritemap table
