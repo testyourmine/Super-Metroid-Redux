@@ -1,0 +1,11 @@
+Possible new sounds:
+
+Normal Item:
+FE EF XX
+1B (Charged Spazer)
+1E (Charged Wave+Spazer)
+1F (Charged Plasma/Hyper)
+22 (Charged Plasma+Wave/Credits Samus shot) !!!
+
+DD 8B 02
+Original Item fanfare

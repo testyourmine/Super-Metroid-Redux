@@ -1,0 +1,10 @@
+PC adress :
+2-ControlFreak2-PB0.7.3-UIUpdate.asm         :   7A90 to 7A95
+2-ControlFreak2-PB0.7.3-UIUpdate.asm         :  27D00 to 27D28
+3-projectcontrolfreakbase-PB0.7.3.asm        :  87870 to 8788E
+2-ControlFreak2-PB0.7.3-UIUpdate.asm         :  87B90 to 87BB7
+2-ControlFreak2-PB0.7.3-UIUpdate.asm         :  87D10 to 87DBB
+2-ControlFreak2-PB0.7.3-UIUpdate.asm         :  96E10 to 96E7B
+2-ControlFreak2-PB0.7.3-UIUpdate.asm         :  97F20 to 97F2F
+2-ControlFreak2-PB0.7.3-UIUpdate.asm         : 1C2000 to 1C341F
+3-projectcontrolfreakbase-PB0.7.3.asm        : 1C3420 to 1C35EB
