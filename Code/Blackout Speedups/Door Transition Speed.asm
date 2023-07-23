@@ -21,8 +21,8 @@ org $80AEEB
 	dw !S
 org $80AEFA
 	dw !X
-org $80AF45
-	dw !Y
+;org $80AF45
+;	dw !Y
 org $80AF64
 	dw !S
 org $80AF6E

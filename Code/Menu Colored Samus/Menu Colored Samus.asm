@@ -9,15 +9,15 @@ org $82B5C5
 org $82B5E3
                        JSR.W CODE_82F714
 					   
-org $82F719
-          CODE_82F70F: JSR.W CODE_82A27E
+org $82F70F
+          CODE_82F70F: JSR.W $A27E
                        BRA CODE_82F717  
                                         
-          CODE_82F714: JSR.W CODE_82A29D
+          CODE_82F714: JSR.W $A29D
                                         
           CODE_82F717: BRA CODE_82F71C  
                                         
-          CODE_82F719: JSR.W CODE_82A615
+          CODE_82F719: JSR.W $A615
         
                                                  
           CODE_82F71C: PHX                       
@@ -35,7 +35,7 @@ org $82F719
                                                  
           CODE_82F732: LDA.W #$B600              
                        STA.B $01                 
-                       LDA.L UNREACH_82F755,X    
+                       LDA.L DATA16_82F755,X    
                        STA.B $00                 
                        LDY.W #$0000              
                        LDX.W #$0000              
@@ -52,7 +52,7 @@ org $82F719
                        PLX                       
                        RTS                       
                                                  
-       UNREACH_82F755: db $00,$F2,$20,$F2,$40,$F2
+        DATA16_82F755: dw $F200,$F220,$F240
 	   
 org $B6F200
                        db $03,$20,$B1,$0B,$A9,$1E,$45,$01

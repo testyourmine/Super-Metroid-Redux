@@ -98,7 +98,7 @@ org $82FBC0
 		DW $FFFF
 
 	NorfairItems:
-		DW $0031,$FFFF : DB $0F,$05 : DW !Circle
+		DW $0031,$FFFF : DB $10,$05 : DW !Circle
 		DW $0032,$FFFF : DB $05,$03 : DW !Ball	; ICE BEAM
 		DW $0033,$FFFF : DB $02,$05 : DW !Circle
 		DW $0034,$FFFF : DB $13,$0B : DW !Circle

@@ -118,7 +118,7 @@ DW $0800,$0010,$0003	;cf	(press [UP] & hold [R] to aim up)
 DW $0000,$0010,$0005	;cf	(hold [R] to aim upright)
 DW $0000,$0800,$0003	;cf	(hold [UP] to aim up)
 DW $0000,$0100,$0009	;cf	(hold [RIGHT] to move right)
-DW $FFFF:
+DW $FFFF
 ;-------------------------------------------------------------------------------------------------------
 T07:	;= Facing right, aiming downright
 TD1:	;= Samus ran right into a wall, is still holding right and is now aiming diagonal down

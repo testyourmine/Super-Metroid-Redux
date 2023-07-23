@@ -1,8 +1,8 @@
 lorom
 
-org $948884: JSR $B1F0
+org $948884 : JSR $B1F0
 
-org $94B1F0:
+org $94B1F0
           CODE_94B1F0: LDA.W $0A1C      
                        CMP.W #$00C9     
                        BEQ CODE_94B201  
@@ -30,7 +30,7 @@ org $94B1F0:
                        LDA.W #$FFFE     
                        STA.B $12        
                        STZ.B $14        
-                       JSL.L CODE_949763
+                       JSL.L $9763
                        LDA.W #$0001     
                        STA.W $0A6E      
                        STA.W $0B3C      

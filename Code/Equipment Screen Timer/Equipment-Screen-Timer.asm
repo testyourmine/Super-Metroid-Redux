@@ -7,7 +7,7 @@ org $828F68
 org $82FB32
 EquipTime:
 	LDX #$0000
-	LDA #$0CA3		;//this is whatever tile from 1B0000 you wana use for spacing
+	LDA #$0EBC		;//this is whatever tile from 1B0000 you wana use for spacing
 	STA $7E39F0		;//after hours
 	STA $7E39F6		;//after minutes
 

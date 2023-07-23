@@ -1,12 +1,12 @@
 lorom
 
-org $90AC60: BEQ $00
+org $90AC60 : BEQ $00
 
-org $90AE19: BRA $02
+org $90AE19 : BRA $02
 
-org $90AFF1: BRA $29
+org $90AFF1 : BRA $29
 
-org $90B005:
+org $90B005
                        JSR.W $B329       
                        LDA.W $0C04,X           
                        AND.W #$000F            
@@ -36,9 +36,9 @@ org $90B2FE
                        PLP              
                        RTS              
 
-org $90B362: RTS
+org $90B362 : RTS
 
-org $90B372:
+org $90B372
                        BNE return       
                        LDA.W $0BF0,X    
                        BPL CODE_90B37D  
@@ -75,8 +75,8 @@ org $90B372:
                                         
                return: RTS              
 
-org $90B412:
-                       BNE return       
+org $90B412
+                       BNE return2       
                        LDA.W $0BDC,X    
                        BPL CODE_90B41D  
                        EOR.W #$FFFF     
@@ -84,7 +84,7 @@ org $90B412:
                                         
           CODE_90B41D: AND.W #$FF00     
                        CMP.W #$0B00     
-                       BMI return       
+                       BMI return2       
                        XBA              
                        SEC              
                        SBC.W #$000A     
@@ -106,7 +106,7 @@ org $90B412:
                        AND.W #$0F00     
                        CMP.W #$0800     
                        PLA              
-                       BCS return       
+                       BCS return2       
                        STA.W $0B64,X    
                                         
-               return: RTS              
+              return2: RTS              

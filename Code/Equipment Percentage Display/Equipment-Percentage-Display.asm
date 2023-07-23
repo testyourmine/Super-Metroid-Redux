@@ -71,7 +71,7 @@ ItemPercent:
 
 ;//[basic drawing]
 	LDX #$0000
-	LDA #$0C4A		;//decimal icon
+	LDA #$0CDA		;//decimal icon
 	STA $7E39CE
 	LDA #$0C02		;//percent icon
 	STA $7E39D2

@@ -24,5 +24,4 @@ jump2:
 	RTS
 +	PLA
 	LDA #$0001
-	RTS
-LDA #$0001
+	RTS 

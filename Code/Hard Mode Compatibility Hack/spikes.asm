@@ -22,7 +22,8 @@ org $948F25		;//bts 03
 
 ;//FREE SPACE
 ;------------
-org $94B1A0		;//[0A31A0] ($0F bytes)
+;Originally org $94B1A0
+org $94B1B0		;//[0A31A0] ($0F bytes)
 Spikes:
 	PHA
 	LDA $7ED808			;//difficulty flag

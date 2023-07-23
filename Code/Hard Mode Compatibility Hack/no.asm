@@ -77,29 +77,29 @@ org $90AD6B		;//item cancel ($0B bytes)
 ;==============================================================
 ;//SAMUS ARMOR REDUCTION (SPIKES)
 ;==============================================================
-org $948EEA		;//bts 01
-	JSR Spikes
-	ADC #$0010	;//vanilla spike damage (0A0EEE)
-
-org $949886		;//bts 02
-	JSR Spikes
-	ADC #$0010	;//vanilla spike damage	(0A188A)
-
-org $948F25		;//bts 03
-	JSR Spikes	
-	ADC #$0010	;//vanilla spike damage	(0A0F29)
-
-;//FREE SPACE
-;------------
-org $94B1A0		;//[0A31A0] ($10 bytes)
-Spikes:
-	LDA $7ED808			;//difficulty flag
-	CMP #$0000	
-	BEQ +
-	ASL $7E0012
-+
-	LDA $0A50			;//damage to samus (suit divisor)
-	RTS
+;org $948EEA		;//bts 01
+;	JSR Spikes
+;	ADC #$0010	;//vanilla spike damage (0A0EEE)
+;
+;org $949886		;//bts 02
+;	JSR Spikes
+;	ADC #$0010	;//vanilla spike damage	(0A188A)
+;
+;org $948F25		;//bts 03
+;	JSR Spikes	
+;	ADC #$0010	;//vanilla spike damage	(0A0F29)
+;
+;;//FREE SPACE
+;;------------
+;org $94B1A0		;//[0A31A0] ($10 bytes)
+;Spikes:
+;	LDA $7ED808			;//difficulty flag
+;	CMP #$0000	
+;	BEQ +
+;	ASL $7E0012
+;+
+;	LDA $0A50			;//damage to samus (suit divisor)
+;	RTS
 ;--------------------------------------------------------------
 
 ;==============================================================
@@ -110,7 +110,8 @@ org $A0A6E4		;//projectile damage array
 
 ;//FREE SPACE
 ;------------
-org $A0FED0		;//[107ED0] ($20 bytes + $0E bytes HardMode:)
+;Originally org $A0FED0
+org $A0FEA0		;//[107ED0] ($20 bytes + $0E bytes HardMode:)
 DamageReduction:	;//checks for hard mode
 	LDA $0C2C,x 			;//projectile damage array
 	PHA				;//get out the way
@@ -131,7 +132,7 @@ HardMode:		;//checks for hard mode ($0E bytes)
 	LDA $7ED808			;//item cancel (difficulty)
 	CMP #$0000
 	BEQ +				;//branch if normal
-	ASL $7E0012			;//multiply
+	ASL $0012			;//multiply
 +
 	LDA $09A2			;//equipped items
 	RTS				;//return
@@ -201,8 +202,8 @@ HardSprites:				;//mode:hff
 org $A2A9B5		;//part of samus arrival routine
 	JSR SaveMode			;//lda $0952
 
-org $8283E0		;//part of the ceres routine
-	NOP : NOP : NOP			;//lda $0952
+;org $8283E0		;//part of the ceres routine
+;	NOP : NOP : NOP			;//lda $0952
 
 ;//FREE SPACE
 ;------------
@@ -225,7 +226,8 @@ org $80858F
 
 ;//FREE SPACE
 ;------------
-org $80FFA0		;//[007FA0] ($16 bytes) End of bank b4 rom info
+;Originally org $80FFA0
+org $80FF70		;//[007FA0] ($16 bytes) End of bank b4 rom info
 LoadMode:
 	LDA $7ED808
 	;CMP #$0000			;//check normal flag

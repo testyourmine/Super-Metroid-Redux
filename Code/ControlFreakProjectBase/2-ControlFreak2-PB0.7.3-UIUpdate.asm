@@ -1,6 +1,6 @@
 LoRom
 
-!SelectionHackAddress = $FB90 ;;correspondant à ControlFreak2-modPBFull.asm ligne 213 (F640 par défaut)
+!SelectionHackAddress = $FB90
 
 !Yellow = #$0000
 !Green = #$1000
@@ -61,7 +61,8 @@ org $84FD00 ; freespace
 		STZ $18A8 ;moved
 		RTL
 
-org $90FD10 ; freespace déplacé car déja pris, 90FAD1 par défaut
+;Originally org $90FD10
+org $90FAD1 ; freespace
 	PaintWeapon:
 		PHA : PHX : PHY : PHB : PHD : PHP
 		LDX !Disabled : LDA !PowerBomb : JSL PaintHudItem

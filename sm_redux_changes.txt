@@ -55,7 +55,7 @@ $81:B360: LDA #$0001, STA $09E4 - Original
 $81:EF20: db $10,$00,$10,$0A,$10,$14 SRAM offsets - Save Load, no changes
 $81:EF2D: alot of code, redoes Save to SRAM - Save Load, no changes
 $81:EFDF: alot of code, redoes Load from SRAM - Save Load, no changes
-$81:F800: alot of data, idk what it has
+$81:F800: alot of data, idk what it has - no clue, related to Load/Save Map routine
 $81:FA00: alot of code, draws difficulty on file select - Hard Mode Compatibility Hack, no changes
 
 $82:8774: alot of data, stuff for Demo room data - Original
