@@ -1,0 +1,4 @@
+# Ignore all ROM files
+*.sfc
+out/*.sfc
+rom/*.sfc

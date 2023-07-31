@@ -4,9 +4,13 @@
 
 LoRom
 
-!Ball = #$000C	; Change if another sprite is desired
-!Circle = #$000C
-!Dot = #$000D
+;!Ball = #$000C	; Change if another sprite is desired
+;!Circle = #$000C
+;!Dot = #$000D
+!Ball = $000C	; Change if another sprite is desired
+!Circle = $000C
+!Dot = $000D
+
 
 org $82C3B4 : DW $20B7 ; Circle sprite
 org $82C3BB : DW $20AA ; Dot sprite

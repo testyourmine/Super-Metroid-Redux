@@ -269,7 +269,7 @@ org $84EE3E			;Scenery Reserve Tank
 ;-------------------------DON'T EDIT THIS STUFF--------------------------
 
 org $858491
-	DW #$0020
+	DW $0020	;#$0020
 org $82E126
 	JSL CLIPCHECK
 	BRA $08
