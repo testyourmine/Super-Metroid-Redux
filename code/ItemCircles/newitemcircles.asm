@@ -9,7 +9,7 @@ LoRom
 ;!Dot = #$000D
 !Ball = $000C	; Change if another sprite is desired
 !Circle = $000C
-!Dot = $000D
+!Dot = #$000D
 
 
 org $82C3B4 : DW $20B7 ; Circle sprite
