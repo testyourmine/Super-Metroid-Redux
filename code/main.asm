@@ -39,3 +39,6 @@ incsrc "Super Missile Recoil/Super Missile Recoil.asm"
 incsrc "TourianEvent/CutscenePLM.asm"
 incsrc "Tractor Beam/TractorBeam.asm"
 incsrc "misc.asm"
+
+; Implement optional patches
+incsrc "optional.asm"
