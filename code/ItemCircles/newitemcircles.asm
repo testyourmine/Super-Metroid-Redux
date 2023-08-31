@@ -4,9 +4,6 @@
 
 LoRom
 
-;!Ball = #$000C	; Change if another sprite is desired
-;!Circle = #$000C
-;!Dot = #$000D
 !Ball = $000C	; Change if another sprite is desired
 !Circle = $000C
 !Dot = #$000D
