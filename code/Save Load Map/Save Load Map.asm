@@ -1,103 +1,58 @@
 lorom
 
-org $8182E4
-                       PHB                    
-                       PHP                    
-                       PHK                    
-                       PLB                    
-                       REP #$30               
-                       LDA.W #$F800           
-                       STA.B $00              
-                       LDA.W #$0081           
-                       STA.B $02              
-                       LDA.W #$CD52           
-                       STA.B $03              
-                       LDA.W #$007E           
-                       STA.B $05              
-                       LDX.W #$0702           
-                       LDA.W #$0000           
-                                              
-          CODE_818304: STA.L $7ECD50,X        
-                       DEX                    
-                       DEX                    
-                       BNE CODE_818304        
-                       STZ.B $15              
-                       STZ.B $16              
-                                              
-          CODE_818310: PHX                    
-                       TAX                    
-                       LDA.W $8131,X
-                       PLX                    
-                       AND.W #$00FF           
-                       STA.B $12              
-                                              
-          CODE_81831B: LDA.B ($00)            
-                       AND.W #$00FF           
-                       CLC                    
-                       ADC.B $15              
-                       TAY                    
-                       SEP #$20               
-                       LDA.L $7ED91C,X        
-                       STA.B [$03],Y          
-                       REP #$20               
-                       INC.B $00              
-                       INX                    
-                       DEC.B $12              
-                       BNE CODE_81831B        
-                       INC.B $16              
-                       LDA.B $16              
-                       CMP.W #$0007           
-                       BMI CODE_818310        
-                       PLP                    
-                       PLB                    
-                       RTS                    
-					   NOP #10
+;Original code unknown
+;Disassembled by testyourmine
 
+{
+!exploredTiles = $7ECD50
+!compressedTiles = $7ED91C
+!areaMapSize = $8131
+!mapData = $F800
+!exploredTilesAddress = $CD52
+
+{
+org $8182E4
+MapLoad:
+	PHB : PHP : PHK : PLB : REP #$30               
+	LDA.W #!mapData : STA.B $00 : LDA.W #$0081 : STA.B $02					;Store pointer to $81F800 map tiles into $00
+	LDA.W #!exploredTilesAddress : STA.B $03 : LDA.W #$007E : STA.B $05		;Store explored map tiles RAM address into $03
+	LDX.W #$0702 : LDA.W #$0000           
+
+.clear_map: 
+	STA.L !exploredTiles,X : DEX : DEX : BNE .clear_map	;Clear map tiles explored
+	STZ.B $15 : STZ.B $16	;Set area index to zero
+
+.loop_area: 
+	PHX : TAX
+	LDA.W !areaMapSize,X : PLX : AND.W #$00FF : STA.B $12	;Store area map size in $12
+                                              
+.loop_room: 
+	LDA.B ($00) : AND.W #$00FF : CLC : ADC.B $15 : TAY			;Put area map room offset in Y
+	SEP #$20 : LDA.L !compressedTiles,X : STA.B [$03],Y			;Store compressed map data in explored map tiles
+	REP #$20 : INC.B $00 : INX : DEC.B $12 : BNE .loop_room		;Increment index and if there is more rooms then go to next room
+	INC.B $16 : LDA.B $16 : CMP.W #$0007 : BMI .loop_area		;If there are still more areaa then go to next area
+	PLP : PLB : RTS : NOP #10	;Return
+}
+
+{
 org $81834B
-                       PHB                    
-                       PHP                    
-                       PHK                    
-                       PLB                    
-                       REP #$30               
-                       STZ.B $19              
-                       STZ.B $1A              
-                       LDA.W #$F800           
-                       STA.B $00              
-                       LDA.W #$CD52           
-                       STA.B $03              
-                       LDA.W #$007E           
-                       STA.B $05              
-                       LDA.W #$0000           
-                       TAX                    
+MapSave:
+	PHB : PHP : PHK : PLB : REP #$30               
+	STZ.B $19 : STZ.B $1A	;Set the area index to 0
+	LDA.W #!mapData : STA.B $00	;Store pointer to $81F800 map tiles into $00
+	LDA.W #!exploredTilesAddress : STA.B $03 : LDA.W #$007E : STA.B $05		;Store explored map tiles RAM address into $03
+	LDA.W #$0000 : TAX
                                               
-          CODE_818368: PHX                    
-                       TAX                    
-                       LDA.W $8131,X
-                       PLX                    
-                       AND.W #$00FF           
-                       STA.B $16              
+.loop_area: 
+	PHX : TAX
+	LDA.W !areaMapSize,X : PLX : AND.W #$00FF : STA.B $16		;Store area map size in $16
                                               
-          CODE_818373: LDA.B ($00)            
-                       AND.W #$00FF           
-                       CLC                    
-                       ADC.B $19              
-                       TAY                    
-                       SEP #$20               
-                       LDA.B [$03],Y          
-                       STA.L $7ED91C,X        
-                       REP #$20               
-                       INC.B $00              
-                       INX                    
-                       DEC.B $16              
-                       BNE CODE_818373        
-                       INC.B $1A              
-                       LDA.B $1A              
-                       CMP.W #$0007           
-                       BMI CODE_818368        
-                       PLP                    
-                       PLB                    
-                       RTS                    
-					   NOP #6
+.loop_room: 
+	LDA.B ($00) : AND.W #$00FF : CLC : ADC.B $19 : TAY			;Put area map room offset in Y
+	SEP #$20 : LDA.B [$03],Y : STA.L !compressedTiles,X			;Store explored map tiles into compressed map data
+	REP #$20 : INC.B $00 : INX : DEC.B $16 : BNE .loop_room		;Increment index and if there are more rooms then go to next room
+	INC.B $1A : LDA.B $1A : CMP.W #$0007 : BMI .loop_area		;If there are still more areas then go to next area
+	PLP : PLB : RTS : NOP #6	;Return
 
 org $81F800
                        db $07,$0B,$0D,$0E,$0F,$11,$13,$15,$16,$17,$19,$1A,$1D,$1E,$1F,$21
@@ -125,3 +80,5 @@ org $81F800
                        db $26,$2A,$2E,$32,$35,$36,$39,$3A,$3E,$41,$42,$45,$46,$4A,$4D,$4E
                        db $51,$52,$55,$56,$5A,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00,$00
                        db $2D,$31,$35,$39,$3D,$41,$45,$46,$00,$00,$00,$00,$00,$00,$00,$00
+}
+}

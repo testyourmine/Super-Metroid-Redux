@@ -2206,7 +2206,7 @@
           CODE_8DC4C2: PHP                                  ;8DC4C2|08      |      ;  
                        REP #$20                             ;8DC4C3|C220    |      ;  
                        LDA.W #$8000                         ;8DC4C5|A90080  |      ;  
-                       TSB.W $1E79                          ;8DC4C8|0C791E  |821E79;  
+                       TSB.W $1E79                          ;8DC4C8|0C791E  |8B1E79;  
                        PLP                                  ;8DC4CB|28      |      ;  
                        RTL                                  ;8DC4CC|6B      |      ;  
                                                             ;      |        |      ;  
@@ -2222,7 +2222,7 @@
                        PHX                                  ;8DC4DB|DA      |      ;  
                        LDX.W #$000E                         ;8DC4DC|A20E00  |      ;  
                                                             ;      |        |      ;  
-          CODE_8DC4DF: STZ.W $1E7D,X                        ;8DC4DF|9E7D1E  |801E7D;  
+          CODE_8DC4DF: STZ.W $1E7D,X                        ;8DC4DF|9E7D1E  |8B1E7D;  
                        DEX                                  ;8DC4E2|CA      |      ;  
                        DEX                                  ;8DC4E3|CA      |      ;  
                        BPL CODE_8DC4DF                      ;8DC4E4|10F9    |8DC4DF;  

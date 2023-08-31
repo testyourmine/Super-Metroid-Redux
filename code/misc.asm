@@ -126,10 +126,6 @@ org $84F030
                        STA.W $09D6
                        RTS        
 
-org $858000 : padword $000E : pad $858080
-
-org $858426 : padword $000E : pad $858436
-
 org $888788 : LDA $0084
 
 org $888799 : LDA #$001A
@@ -141,6 +137,16 @@ org $888819 : ADC #$0002
 org $88884F : ADC #$0002
 
 org $88887A : SBC #$0002
+
+org $8EE446 : dw $7C00
+
+org $8EE454 : dw $03E0,$03BF
+
+org $8EE466 : dw $7C00
+
+org $8EE46C : dw $0156,$001F
+
+org $8EE474 : dw $03E0,$03BF
 
 org $8FE9A0 
 					   LDA #$0001

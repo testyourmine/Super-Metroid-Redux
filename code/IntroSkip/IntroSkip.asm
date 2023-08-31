@@ -1,298 +1,193 @@
-;-------------------------------------
-; 	Introuction Sequence Skip
-;	     by samsamcmoi
-;	Disassembly by ShadowOne333
-;-------------------------------------
 lorom
-; Intro Skip hijack
-org $8BA367	; 0x05A367
-	jsr IntroSkip	; JSR $F760
 
-;-------------------------------------
-; Freespace for SkipIntro : 5F760 - 5FAA4
-;org $8BF760	; Originally 0x05F760
-;-------------------------------------
-; Changed to $8BFA00 for compatibility with Redux
-org $8BFA00	; 0x05FA00
-IntroSkip:
-	lda $09E2
-	beq +	; $03
-	jmp l_8BF811
-+
-	ldx #$0010
--
-	lda $1F51
-	cmp.l l_8BF8C1,x	; DF $8BF8C1
-	beq +	; $06
-	dex 
-	dex 
-	bmi ++	; $1B
-	bra -	; $F1
-+
-	stz $1F68
-	ldx #$0000
--
-	txa 
-	cmp #$0032
-	bpl +	; $0B
-	lda #$3C29
-	sta $7E3646,x
-	inx 
-	inx 
-	bra -	; $EF
-+
-	bra l_8BF811	; $7E
-++
-	ldx #$000E
--
-	lda $1F51
-	cmp.l l_8BF8B3,x	; DF $8BF8B3
-	beq +	; $06
-	dex 
-	dex 
-	bmi l_8BF811	; $6E
-	bra -	; $F1
-+
-	lda $1F68
-	bne l_8BF815	; $6B
+;Original code from Begrimed's Project Base
+;Created by Quote58
+;Disassembled by testyourmine
 
-	ldx #$0000
--
-	txa 
-	cmp #$0032
-	bpl +	; $0B
-	lda #$3C29
-	sta $7E3646,x
-	inx 
-	inx 
-	bra -	; $EF
-+
-	lda $8F
-	bit #$0040
-	bne +	; $1E
-	bit #$0080
-	bne +	; $19
-	bit #$8000
-	bne +	; $14
-	bit #$4000
-	bne +	; $0F
-	bit #$0010
-	bne +	; $0A
-	bit #$0020
-	bne +	; $05
-	bit #$1000
-	beq l_8BF811	; $2E
-+
-	lda #$0020
-	sta $1F68
---
-	bra l_8BF852	; $4B
-l_8BF7EB:
-	ldx #$0004
--
-	lda.l l_8BF88D,x
-	sta $7EC022,x
-	dex 
-	dex 
-	bmi +	; $02
-	bra -	; $F2
-+
-	ldx #$0000
--
-	txa 
-	cmp #$0032
-	bpl l_8BF811	; $0C
-	lda.l l_8BF857,x
-	sta $7E3646,X
-	inx 
-	inx 
-	bra -	; $EE
+{
+!newInput = $8F
+!vramSize = $D0
+!vramAddress = $D2
+!vramBank = $D4
+!vramDestination = $D5
+!vramWritePtr = $0330
+!jpFlag = $09E2
+!cinematicFunc = $1F51
+!skipIntroFlag = $1F68
+!paletteColor = $7EC022
+!skipIntroText = $7E3646
 
-l_8BF811:	; $F811
-	lda $1B9F
-	rts 
-l_8BF815:
-	rep #$30
-	lda $1F68
-	cmp #$0002
-	bmi +	; $05
-	dec $1F68
-	bra --	; $C5
-+
-	lda $8F
-	bit #$1000
-	beq --	; $BE
-	stz $1F68
-	lda #$B72F
-	sta $1F51
-	bra l_8BF811	; $DB
-l_8BF852:
-	ldx $0330
-	lda #$00C0
-	sta $D0,x
-	lda #l_8BF8D1
-	sta $D2,x
-	lda #$8B8B
-	sta $D4,x
-	lda #$5300
-	sta $D5,x
-	txa 
-	clc 
-	adc #$0007
-	sta $0330
-	bra l_8BF7EB	; $94
-l_8BF857:	; "PRESS START TO SKIP INTRO" message
-	dw $300F,$3011,$3004,$3012,$3012,$302F,$3012,$3013
-	dw $3000,$3011,$3013,$302F,$3013,$300E,$302F,$3012
-	dw $300A,$3008,$300F,$302F,$3008,$300D,$3013,$3011
-	dw $300E,$3025,$302F
-l_8BF88D:	; Palette data... ?
-	dw $7FFF,$0000,$294A,$0000,$03E0,$6318,$0340,$3BE0
-	dw $03E0,$6318,$0280,$2680,$03E0,$6318,$0200,$1580
+!funcNothing = $A391
+!funcSetupMotherBrain = $AEB8
+!funcSetupBabyMetroid = $AF6C
+!funcSetupBabyDelivery = $B0F2
+!funcSetupBabyExamine = $B123
+!funcIntroEnd = $B1DA
+!funcLastPage = $A390
+!funcFadeToGame = $B250
+!funcFadeToScene = $B2D2
+!funcPage2 = $B35F
+!funcPage3 = $B370
+!funcPage4 = $B381
+!funcPage5 = $B392
+!funcFadeFromGame = $B3F4
+!funcFadeFromScene = $B458
+
+
+org $8BA367
+	JSR.W IntroSkip
+
+org $8BFA00
+IntroSkip: 
+	LDA.W !jpFlag : BEQ .check_function : JMP.W .exit	;If the Japanese text is set, return
+
+.check_function: 
+	LDX.W #$0010	;Index and counter for fading cinematic functions
+
+.check_fading: 
+	LDA.W !cinematicFunc : CMP.L .Fading_Function,X : BEQ .game_fading	;If a screen fade plays, clear the text
+	DEX : DEX : BMI .game_not_fading : BRA .check_fading				;Otherwise, the screen is not fading
+
+.game_fading: 
+	STZ.W !skipIntroFlag : LDX.W #$0000		;Can't skip the intro so clear the text
+
+.clear_text_fading: 
+	TXA : CMP.W #$0032 : BPL .return			;If cleared 32h text, then return
+	LDA.W #$3C29 : STA.L !skipIntroText,X	;Otherwise, clear the text
+	INX : INX : BRA .clear_text_fading
+
+.return: 
+	BRA .exit
+
+.game_not_fading: 
+	LDX.W #$000E	;Index and counter for non-fading cinematic functions
+
+.check_cutscene: 
+	LDA.W !cinematicFunc : CMP.L .Cutscene_Function,X : BEQ .check_skip	;If a cutscene is playing, return
+	DEX : DEX : BMI .exit : BRA .check_cutscene						;Otherwise, check if the intro can be skipped
+
+.check_skip: 
+	LDA.W !skipIntroFlag : BNE .final	;If the intro can be skipped, draw the text
+	LDX.W #$0000						;Otherwise clear the text
+
+.clear_text: 
+	TXA : CMP.W #$0032 : BPL .check_input	;If cleared 32h text, then check for input
+	LDA.W #$3C29 : STA.L !skipIntroText,X	;Otherwise, clear the text
+	INX : INX : BRA .clear_text         
+
+.check_input: 
+	LDA.B !newInput						;Draw the skip intro text if:
+	BIT.W #$0040 : BNE .pressed_input	;A face button was pressed or
+	BIT.W #$0080 : BNE .pressed_input
+	BIT.W #$8000 : BNE .pressed_input
+	BIT.W #$4000 : BNE .pressed_input
+	BIT.W #$0010 : BNE .pressed_input	;A should button was pressed or
+	BIT.W #$0020 : BNE .pressed_input
+	BIT.W #$1000						;The start button was pressed
+	BEQ .exit							;Otherwise, don't draw the text and return
+
+.pressed_input: 
+	LDA.W #$0020 : STA.W !skipIntroFlag	;Set the skip intro flag to true
+
+.draw_text: 
+	BRA .clear_layer_1	;Write $2D00 over VRAM first
+
+.palette_start: 
+	LDX.W #$0004	;Put the palette index in X
+
+.load_palette: 
+	LDA.L .Color_Palette,X : STA.L !paletteColor,X	;Load the first three palette entries
+	DEX : DEX : BMI .start_text : BRA .load_palette	;Then load the text
+
+.start_text: 
+	LDX.W #$0000	;Put the text index in X
+
+.load_text: 
+	TXA : CMP.W #$0032 : BPL .exit						;If done drawing text, exit
+	LDA.L .Skip_Intro_Text,X : STA.L !skipIntroText,X	;Otherwise, continue drawing text
+	INX : INX : BRA .load_text          
+
+.exit: 
+	LDA.W $1B9F : RTS	;Restore original instruction and return
+
+.final: 
+	REP #$30
+	LDA.W !skipIntroFlag : CMP.W #$0002 : BMI .skip	;If the flag is 
+	DEC.W !skipIntroFlag : BRA .draw_text			;Otherwise
+
+.skip: 
+	LDA.B !newInput : BIT.W #$1000 : BEQ .draw_text				;Draw the skip intro text if start isn't pressed
+	STZ.W !skipIntroFlag : LDA.W #$B72F : STA.W !cinematicFunc	;Otherwise, reset the flag and skip the intro
+	BRA .exit	;Return
+
+.clear_layer_1: 
+	LDX.W !vramWritePtr														;Put the pointer to the table of VRAM entries in X
+	LDA.W #$00C0 : STA.B !vramSize,X										;Write size is C0h
+	LDA.W #$FB71 : STA.B !vramAddress,X : LDA.W #$8B8B : STA.B !vramBank,X	;Source address is $8BFB71
+	LDA.W #$5300 : STA.B !vramDestination,X									;Write address is $5300 in VRAM
+	TXA : CLC : ADC.W #$0007 : STA.W !vramWritePtr : BRA .palette_start		;Increment the write pointer to the next entry
+
+.Skip_Intro_Text: 
+	dw $300F,$3011,$3004,$3012,$3012	;PRESS
+	dw $302F
+	dw $3012,$3013,$3000,$3011,$3013	;START
+	dw $302F
+	dw $3013,$300E						;TO
+	dw $302F
+	dw $3012,$300A,$3008,$300F			;SKIP
+	dw $302F
+	dw $3008,$300D,$3013,$3011,$300E	;INTRO
+	dw $3025,$302F
+
+.Color_Palette: 
+	dw $7FFF,$0000,$294A
+	dw $0000
+	dw $03E0,$6318,$0340,$3BE0
+	dw $03E0,$6318,$0280,$2680
+	dw $03E0,$6318,$0200,$1580
 	dw $03E0,$6318,$0160
-l_8BF8B3:
-	dw $A391,$AEB8,$AF6C,$B0F2,$B123,$B1DA,$A390
-l_8BF8C1:
-	dw $B250,$B35F,$B370,$B2D2,$B381,$B392,$B3F4,$B458
-l_8BF8D1:
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
-	dw $2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00,$2D00
 
-l_8BF991:
-	lda $09A2
-	bit #$0020
-	bne +	; $0F
-	bit #$0001
-	bne ++	; $05
-	ldx #$941E
-	bra +++	; $08
-++
-	ldx #$953E
-	bra +++	; $03
-+
-	ldx #$981E
-+++
-	lda #$9B00
-	sta $13
-	stx $12
-	ldx #$001E
--
-	lda [$12]	; A7 12
-	sta $7EC040,X
-	sta $7EC1C0,X
-	dec $12
-	dec $12
-	dex 
-	dex 
-	bpl -	; $EE
-	sep #$20
-	stz $69
-	rtl 
+.Cutscene_Function: 
+	dw !funcNothing
+	dw !funcSetupMotherBrain
+	dw !funcSetupBabyMetroid
+	dw !funcSetupBabyDelivery
+	dw !funcSetupBabyExamine
+	dw !funcIntroEnd
+	dw !funcLastPage
 
-	ldy #$E7A5
-	jsr l_8BFA46
-	jsr l_8BFA61
-	lda #l_8BF9DF	; $F9DF
-	sta $1F51
-	stz $0D9C
-	rts 
-l_8BF9DF:
-	dec $1A49
-	beq +	; $01
-	rts
-+
-	ldy #$EEA5
-	jsr l_8BFA46
-	jsr l_8BFA61
-	lda #l_8BF9F8	; F9F8
-	sta $1F51
-	stz $0D9C
-	rts 
-l_8BF9F8:
-	dec $1A49
-	beq +	; $01
-	rts
-+
-	ldy #$F5A5
-	jsr l_8BFA46
-	jsr l_8BFA61
-	lda #l_8BFA11	; $FA11
-	sta $1F51
-	stz $0D9C
-	rts
-l_8BFA11:
-	dec $1A49
-	beq +	; $01
-	rts
-+
-	bra +	; $16
-	jsr l_8BFA46
-	jsr l_8BFA61
-	lda #l_8BFA29	; $FA29
-	sta $1F51
-	stz $0D9C
-	rts
-l_8BFA29:
-	dec $1A49
-	beq +	; $01
-	rts
-+
-	ldx #$0000
-	lda #$004F
--
-	sta $7E3000,x
-	inx
-	inx
-	
-	cpx #$06E0
-	bmi -	; $F5
-	lda #$007F
-	jmp $E1DD
-l_8BFA46:
-	phb	; 8B
-	pea $E400	; F4 00 E4
-	; This could possibly be a cpx #$ABAB
-	plb	; AB
-	plb	; AB
-l_8BFA4C:
-	ldx #$0000
--
-	lda $0000,y
-	sta $7E3000,x
-	inx 
-	inx 
-	iny 
-	iny 
-	cpx #$06E0
-	bmi -	; $F0
-	plb 
-	rts
-l_8BFA61:
-	jsr $8806
-	sep #$20
-	lda #$01
-	sta $69
-	stz $6B
-	stz $6F
-	stz $72
-	rep #$20
+.Fading_Function: 
+	dw !funcFadeToGame
+	dw !funcPage2
+	dw !funcPage3
+	dw !funcFadeToScene
+	dw !funcPage4
+	dw !funcPage5
+	dw !funcFadeFromGame
+	dw !funcFadeFromScene
 
-	lda #$01A0
-	sta $1A49
-	rts
-
-l_8BFA79:
-	dw $003C,$0000,$0008,$8862,$0008,$886E,$0008,$8884
-	dw $0008,$88A4,$0008,$F450,$0008,$F47F,$0008,$F4B8
-	dw $0008,$F4FB,$002D,$F548,$9CE1,$9438
-
+	dw $2D00,$2D00,$2D00,$2D00		;The source address of $8BFB71 that is loaded when clearing layer 1
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+	dw $2D00,$2D00,$2D00,$2D00
+}
