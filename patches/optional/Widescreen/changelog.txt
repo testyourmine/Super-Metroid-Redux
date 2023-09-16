@@ -1,0 +1,8 @@
+
+Super Metroid - Widescreen Patch v0.3.01 - Fixed wraping problem of Samus' ship
+Super Metroid - Widescreen Patch v0.3.02 - Fixed garbage tiles in Norfair's door transitions
+Super Metroid - Widescreen Patch v0.3.03 - Clean up unnecessary comments and code
+Super Metroid - Widescreen Patch v0.3.04 - Draw Mother Brain's brain in the Widescreen Area
+Super Metroid - Widescreen Patch v0.3.05 - Turrets in Mother Brain room
+Super Metroid - Widescreen Patch v0.3.06 - Crocomire fix and Widescreen patch code in Bank $B8
+Super Metroid - Widescreen Patch v0.3.07 - Yellow arrows in Map Screen
