@@ -1,5 +1,5 @@
 lorom
 
 ; Censor the Death Sequence for Samus
-org $9AFE74	; 0x0D8074 - 0x0D93F0
-	;incbin "CensorDeath.gfx"
+org $9B8000	; 0x0D8000
+	incbin "DeathCensor.gfx"

@@ -46,7 +46,7 @@ org $8FDC19	; 0x07DC19
 
 ; Room $DC19, State $DC45 header change
 org $8FDC45	; 0x07DC45
-	dd $CDD5EB
+	dl $CDD5EB
 	db $0D,$1E,$05	; Originally db $0D,$00,$00
 
 ; Room $DC65 header change
@@ -63,14 +63,14 @@ org $8FDCB1	; 0x07DCB1
 
 ; Room $DCB1, State $DCC3 header change
 org $8FDCC3	; 0x07DCC3
-	dd $CDD930
+	dl $CDD930
 	db $0D,$00,$00
 	dw $A074,$E26E,$90EC,$C1C1,$DCFB,$0000,$0000,$C831,$E41E
 	dw l_E9A0	; Originally dw $C91E
 
 ; Room $DCB1, State $DCDD header change
 org $8FDCDD	; 0x07DCDD
-	dd $CDD930
+	dl $CDD930
 	db $0D,$1E,$05	; Originally db $0D,$00,$00
 	dw $A074,$E26E,$90EC,$C1C1,$DCFB,$0000,$0000,$C831,$E41E
 	dw l_E9A8	; Originally dw $C91E
