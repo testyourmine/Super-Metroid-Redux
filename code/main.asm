@@ -1,4 +1,62 @@
-lorom
+;----------------------------------------------------------;
+;	Main assembly file for Super Metroid Redux
+; All of the assembly files get linked together and compiled here.
+;----------------------------------------------------------;
+
+;----------------------------------------------------------;
+;			Rom info
+;----------------------------------------------------------;
+arch snes.cpu		; Set processor architecture (SNES)
+lorom			; Switch to LoROM mapping mode
+
+;----------------------------------------------------------;
+;		Global compilation flags
+;----------------------------------------------------------;
+; This patch is only for Super Metroid (SNES) ROM
+; Check title/header "Super Metroid" at 0x7FC0
+
+!heavy = 0		; Heavy Physics
+!demos = 0		; Original Demos on Title Screen
+!dualsuit = 1		; Proper Power Suit for Samus
+!redesigned = 1		; Redesigned Samus Suits
+!splazma = 1		; Enable combining Spazer+Plasma 
+
+;----------------------------------------------------------;
+
+;----------------------------------------------------------;
+;		Internal ROM Header
+;----------------------------------------------------------;
+org $808000
+
+org $80FFC0	; 0x007FC0-0x007FFF
+Internal_Rom_Header:
+{
+	db "Super Metroid        "
+	db $30		; ROM layout / Map mode ($30 for FastROM)
+	db $02		; Chipset: ROM+RAM+SRAM
+	db $0C		; ROM size: 400000h bytes = 4 MiB
+	db $03		; SRAM size: 2000h bytes = 8 KiB
+	db $00		; Country code: Japan
+	db $01		; Developer code: Nintendo
+	db $00		; Version number
+	
+	; Checksums, not necessary since Asar regenerates them
+	;dw $0720	; Checksum complement
+	;dw $F8DF	; Checksum
+
+	skip 4		; Skip the Checksum bytes from Header code
+	
+	; Native interrupt vectors
+	dw $8573,$8573,$8573,$8573,$8573,$9583,$8573,$986A
+	; Emulation interrupt vectors
+	dw $8573,$8573,$8573,$8573,$8573,$8573,$841C,$8573
+}
+
+warnpc $818000
+
+;----------------------------------------------------------;
+;			Main Code
+;----------------------------------------------------------;
 
 incsrc "Backflip/Backflip.asm"
 incsrc "Blackout Speedups/Door Transition Speed.asm"
@@ -40,5 +98,12 @@ incsrc "TourianEvent/CutscenePLM.asm"
 incsrc "Tractor Beam/TractorBeam.asm"
 incsrc "misc.asm"
 
+;----------------------------------------------------------;
+;		Optional patches
+; 	Uncomment the desired Optional patches
+;----------------------------------------------------------;
+
 ; Implement optional patches
 incsrc "optional.asm"
+
+

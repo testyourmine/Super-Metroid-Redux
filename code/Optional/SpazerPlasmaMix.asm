@@ -1,6 +1,6 @@
 ; Spazer + Plasma combination, so both beams can now be combined on the Pause Menu. This optional patch has some graphical glitches!
 lorom
-
+;----------------------------------------------------------;
 ; Equipment screen changes
 org $82AFD6	; 0x012FD6
 	BRA $01	; Remove the Spazer+Plasma check with a branch bypass
@@ -149,7 +149,6 @@ org $9383BF	; 0x0983BF
 	dw $002C,$FC00,$2C34
 
 ;----------------------------------------------------------;
-
 ; Implement Beam changes
 ; Instruction sets
 incsrc "SpazerPlasmaMix/InstructionSets.asm"
