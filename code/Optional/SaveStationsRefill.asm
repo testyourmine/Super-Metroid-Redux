@@ -2,10 +2,6 @@
 
 lorom
 
-; Header checksum changes. Not needed since Asar handles this automatically
-;org $80FFDC	; 0x007FDC
-	;INX : BIT #$7617
-
 ; Unused code / Spawn enemy PLM
 ; Repurposed for Save Stations Refill
 org $84853E	; 0x02053E

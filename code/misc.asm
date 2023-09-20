@@ -105,9 +105,9 @@ org $84BA54 : db $2A
 
 
 org $84BABF
-                       dw $0001,$A6E3
-					   dw $0001,$A6EF
-					   dw $0001,$A6FB
+			dw $0001,$A6E3
+			dw $0001,$A6EF
+			dw $0001,$A6FB
 
 org $84E2CA : db $00
 

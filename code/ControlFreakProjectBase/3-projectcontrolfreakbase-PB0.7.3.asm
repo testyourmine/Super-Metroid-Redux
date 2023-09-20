@@ -7,7 +7,6 @@ org $91A6F0
 	; 2 bytes
 	db $FF,$FF
 
-
 org $91A740
 	; 2 bytes
 	db $FF,$FF

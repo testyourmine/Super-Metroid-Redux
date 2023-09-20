@@ -18,7 +18,7 @@ endif
 if !dualsuit && !redesigned
 ; If both Redesigned and Dual Suit are enabled, use this to compile
 	incsrc "Optional/DualSuit/DualSuitRedesigned.asm"
-elseif !dualsuit == 1
+elseif !dualsuit
 ; If only Redesigned is enabled, then use this for compilation
 	incsrc "Optional/DualSuit/DualSuit.asm"
 endif
@@ -31,7 +31,7 @@ endif
 ;incsrc "Optional/FixedTourianUnlockedDoors.asm"
 
 ; Implement custom heavy physics to Super Metroid to be closer to Zero Mission
-if !heavy == 1
+if !heavy
 	incsrc "Optional/HeavyPhysicsRedux.asm"
 endif
 
@@ -42,20 +42,20 @@ endif
 if !heavy && !demos
 ; If Heavy Physics & Original Demos are enabled, use this to compile
 	incsrc "Optional/OriginalDemos/DemosHeavy.asm"
-elseif !demos == 1
+elseif !demos
 ; If only Original Demos are enabled, then use this for compilation
 	incsrc "Optional/OriginalDemos/DemosRedux.asm"
 endif
 
 ; All Save Stations in the game will refill both energy and weaponry
-;incsrc "Optional/SaveStationsRefill.asm"
+;incsrc "Optional/SaveRefillsEverything.asm"
 
 ; Skip Ceres and start the game right at Landing Site in Zebes
 ;incsrc "Optional/SkipCeres.asm"
 
 ; Be able to combine both Spazer & Plasma Beams
 ; NOTE: There are some graphical issues when using this patch.
-if !splazma == 1 
+if !splazma
 	incsrc "Optional/SpazerPlasmaMix.asm"
 endif
 

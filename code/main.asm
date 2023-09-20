@@ -17,9 +17,9 @@ lorom			; Switch to LoROM mapping mode
 
 !heavy = 0		; Heavy Physics
 !demos = 0		; Original Demos on Title Screen
-!dualsuit = 1		; Proper Power Suit for Samus
-!redesigned = 1		; Redesigned Samus Suits
-!splazma = 1		; Enable combining Spazer+Plasma 
+!dualsuit = 0		; Proper Power Suit for Samus
+!redesigned = 0		; Redesigned Samus Suits
+!splazma = 0		; Enable combining Spazer+Plasma 
 
 ;----------------------------------------------------------;
 
@@ -58,6 +58,7 @@ warnpc $818000
 ;			Main Code
 ;----------------------------------------------------------;
 
+incsrc "Animations/Animations.asm"
 incsrc "Backflip/Backflip.asm"
 incsrc "Blackout Speedups/Door Transition Speed.asm"
 incsrc "Bugfixes/MissileStationEnhancer.asm"
@@ -69,24 +70,32 @@ incsrc "ControlFreakProjectBase/1-ControlFreak2-PB0.7.3.asm"
 incsrc "ControlFreakProjectBase/2-ControlFreak2-PB0.7.3-UIUpdate.asm"
 incsrc "ControlFreakProjectBase/3-projectcontrolfreakbase-PB0.7.3.asm"
 incsrc "Custom Credits/Custom Credits.asm"
+incsrc "Demos/Demos.asm"
 incsrc "DCMapPatch/DCMapPatch.asm"
 incsrc "Ending Suit Palette/Ending Suit Palette.asm"
 incsrc "Ending Suit Palette Copy/Ending Suit Palette Copy.asm"
 incsrc "Ending Time/XxYyZz END TIME.asm"
 incsrc "Ending Totals/endingtotals.asm"
+incsrc "EnemyChanges/Enemies.asm"
 incsrc "Equipment Percentage Display/Equipment-Percentage-Display.asm"
 incsrc "Equipment Screen Timer/Equipment-Screen-Timer.asm"
+incsrc "Graphics/Graphics.asm"
 incsrc "Hard Mode Compatibility Hack/no.asm"
 incsrc "Hard Mode Compatibility Hack/spikes.asm"
 incsrc "Instant Bomb Explosion/Instant Bomb Explosion.asm"
 incsrc "IntroSkip/IntroSkip.asm"
+incsrc "InstructionLists/InstructionLists.asm"
 incsrc "ItemCircles/newitemcircles.asm"
 incsrc "ItemSounds/itemsounds.asm"
 incsrc "KraidFixes/kraid-pause-fix.asm"
 incsrc "KraidFixes/postkraid-graphic-fix.asm"
+incsrc "Maps/LevelData.asm"
+incsrc "Maps/Tilemaps.asm"
 incsrc "Menu Colored Samus/Menu Colored Samus.asm"
+incsrc "MessageBoxes/Messages.asm"
 incsrc "Morph Roll Animation/MorphRoll.asm"
 incsrc "MSU-1/MSU1.asm"
+incsrc "PLMs/PLMs.asm"
 incsrc "Save Load Map/Save Load Map.asm"
 incsrc "SaveLoad/saveload.asm"
 incsrc "Skip Bomb Jump/Skip Bomb Jump.asm"
@@ -104,6 +113,6 @@ incsrc "misc.asm"
 ;----------------------------------------------------------;
 
 ; Implement optional patches
-incsrc "optional.asm"
+;incsrc "optional.asm"
 
 
