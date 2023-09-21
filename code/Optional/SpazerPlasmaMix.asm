@@ -1,6 +1,10 @@
-; Spazer + Plasma combination, so both beams can now be combined on the Pause Menu. This optional patch has some graphical glitches!
-lorom
 ;----------------------------------------------------------;
+;		Spazer + Plasma combination
+;----------------------------------------------------------;
+; Both beams can now be combined on the Pause Menu
+; NOTE: This optional patch has some graphical glitches!
+;----------------------------------------------------------;
+
 ; Equipment screen changes
 org $82AFD6	; 0x012FD6
 	BRA $01	; Remove the Spazer+Plasma check with a branch bypass
