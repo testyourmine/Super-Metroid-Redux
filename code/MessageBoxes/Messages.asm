@@ -93,7 +93,7 @@ org $85877F	; 0x02877F
 	dw "VARIA SUIT"
 	padword $000E : pad $858D13
 	dw "SPRING BALL"
-	padword $000E : pad $858D51
+	padword $000E : pad $858D55
 	dw "MORPH BALL"
 	padword $000E : pad $858D91
 	dw "SCREW ATTACK"
