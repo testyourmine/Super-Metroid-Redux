@@ -632,6 +632,7 @@ org $909781
 	JSR AutoRunCheck
 	BNE $03
 
+;----------------------------------------------------------;
 org $B8A000 ; moved to freespace, default value was $B88000
 
 
@@ -668,17 +669,18 @@ org $B8A000 ; moved to freespace, default value was $B88000
 ; AUTO RUN     ON      OFF
 
 ; END
+;----------------------------------------------------------;
 
-org $978DF4
-incbin CMenu1.bin
+;org $978DF4
+;incbin CMenu1.bin	; Included in Hard mode code
 
 org $978FCD
 incbin CMenu2.bin
 
-org $97938D
-incbin CMenu3.bin
+;org $97938D
+;incbin CMenu3.bin	; Included in Hard mode code
 
-
+;----------------------------------------------------------;
 org $82F70F
 FreeSpace:
 

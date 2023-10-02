@@ -4,13 +4,7 @@
 ; That way, the door will use the newly set flag (which is a reused Torizo boss flag since Tourian doesn't have one) to check whether or not to unlock the door.
 ; The changes have instead been done all through ASM for this file by ShadowOne333
 
-lorom
-
-; Header changes. Not required since we're compiling with Asar, which handles header stuff automatically
-; org $80FFDC	; 0x007FDC
-	; dw $5353,$ACAC
-
-
+;----------------------------------------------------------;
 ; Hijack Queue song 2 music track 
 org $A9F29A	; 0x14F29A
     JSR SetEvent

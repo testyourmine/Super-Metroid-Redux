@@ -5,8 +5,8 @@ LoRom
 ;==============================================================
 org $978DF4		;//[0B8DF4-0B8FCC]
 	incbin options.bin
-org $978FCD		;//[0B8FCD-0B91C3]
-	incbin controller.bin
+;org $978FCD		;//[0B8FCD-0B91C3]
+;	incbin controller.bin
 org $97938D		;//[0B938D-0B9539]
 	incbin difficulty.bin
 ;--------------------------------------------------------------

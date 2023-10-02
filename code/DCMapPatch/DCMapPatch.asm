@@ -826,6 +826,7 @@ org $8E8000	; $8E8000-8EDBFF, 0x070000-0x075BFF
 ;----------------------------------------
 ;;; Projectile and Map graphics ;;;
 org $9AB200	; $9AB200-9AC5FF, 0x0D3200-0x0D45FF
+; Modified for Redux disassembly
 	incbin 9Atiles.bin
 ;----------------------------------------
 ;;; Pause Screen graphics ;;;
@@ -835,6 +836,6 @@ org $B68000	; 0x1B0000-0x1B6FFF
 ;----------------------------------------
 ;;; Free space bank ;;;
 org $B8E000	; 0x1C6000-0x176FFF
-	incbin B8palettes.bin	; Palettes $B8E000-B8FFFF
+	incbin B8tiles.bin	; Palettes $B8E000-B8FFFF
 ;----------------------------------------
 ;
